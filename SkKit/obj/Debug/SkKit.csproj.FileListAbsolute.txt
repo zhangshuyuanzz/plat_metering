@@ -1,0 +1,12 @@
+C:\Users\Administrator\Desktop\onesocketserver\SkKit\bin\Debug\NLog.config
+C:\Users\Administrator\Desktop\onesocketserver\SkKit\bin\Debug\SkKit.dll
+C:\Users\Administrator\Desktop\onesocketserver\SkKit\bin\Debug\SkKit.pdb
+C:\Users\Administrator\Desktop\onesocketserver\SkKit\bin\Debug\NLog.dll
+C:\Users\Administrator\Desktop\onesocketserver\SkKit\bin\Debug\NLog.xml
+C:\Users\Administrator\Desktop\onesocketserver\SkKit\obj\Debug\SkKit.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\onesocketserver\SkKit\obj\Debug\SkKit.csproj.CopyComplete
+C:\Users\Administrator\Desktop\onesocketserver\SkKit\obj\Debug\SkKit.dll
+C:\Users\Administrator\Desktop\onesocketserver\SkKit\obj\Debug\SkKit.pdb
+C:\Users\Administrator\Desktop\onesocketserver\SkKit\bin\Debug\System.Data.SQLite.dll
+C:\Users\Administrator\Desktop\onesocketserver\SkKit\bin\Debug\System.Data.SQLite.xml
+C:\Users\Administrator\Desktop\onesocketserver\SkKit\bin\Debug\System.Data.SQLite.dll.config

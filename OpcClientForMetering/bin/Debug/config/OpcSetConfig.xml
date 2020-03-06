@@ -1,0 +1,19 @@
+<root name="opcsetconfig">
+  <!--
+    实时数据数据区域  流量计=1；电=2；蒸汽=3   Good=1;Bad=2;Feq failed=3
+-->
+  <OracleDb ip="192.168.0.240" serverName="ttest" usrName="ZHANGYONGQIANG" UsrPw="ZHANGYONGQIANG" cuTmTab="OPCDATA" bannerTab="OPCDATA"/>
+  <!--
+    opc server
+-->
+  <Opc tip="127.0.0.1" name="Aspen.Infoplus21_DA" />
+  <devs>
+    <tag id="12" tagname="M_DG_ZQ.PV_D" unit="t/h" des="this is realtime item what it is!!" tagfac="shandong.linyi" type="1" Prefix="yes" />
+  </devs>
+  <!--
+    oracle数据数据区域
+-->
+  <OracleDevs>
+    <tag id="13" tagname="M_CYC_D_QWZSJ1_E" unit="t/h" des="this is realtime item what it is!!" tagfac="shandong.rizhao" type="1" Prefix="no" />
+  </OracleDevs>
+</root>
