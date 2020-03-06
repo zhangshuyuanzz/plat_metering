@@ -16,7 +16,7 @@ namespace Base.kit
         public byte DataType { get; set; }
         public object Value { get; set; }
         public string DataTime { set; get; }
-        public ushort Quality { set; get; }
+        public object Quality { set; get; }
         public bool Active { set; get; }
         public UInt32 TagHandle { set; get; }
         public string Tagstr { set; get; }

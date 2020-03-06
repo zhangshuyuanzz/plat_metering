@@ -77,14 +77,14 @@ namespace OpcClientForMetering
                     one.Value.taginfo.Value = data.Value;
                     one.Value.taginfo.DataTime = data.Timestamp.ToString();
                     one.Value.taginfo.Active = true;
-                    one.Value.taginfo.Quality = (ushort)(data.Quality == "good" ? 1 : 2);
+                    one.Value.taginfo.Quality =data.Quality == "good" ? 192 : 0;
                 }
             }
             catch (Exception ex)
             {
                 logger.Debug("error[{}]",ex.ToString());
             }
-
+             
 
         }
         public void OpcClientMainSubscription(string[] Tagname,string groupname)
@@ -95,6 +95,10 @@ namespace OpcClientForMetering
             }
             string msg;
             OpcGroup OpcSetSubGroup = this.OClient.AddGroup(groupname);
+            OpcSetSubGroup.UpdateRate  = new TimeSpan(0,0,5);
+            logger.Debug("UpdateRate[{}]", OpcSetSubGroup.UpdateRate.Seconds);
+            logger.Debug("UpdateRate[{}]", OpcSetSubGroup.UpdateRate.Milliseconds);
+
             logger.Debug("OpcClientMainSubscription---Length[{}]groupname[{}]", Tagname.Length, groupname);
             OpcSetSubGroup.DataChange += OpcSetGroup_DataChange;
             this.OClient.AddItems(groupname, Tagname, out msg);
@@ -107,9 +111,12 @@ namespace OpcClientForMetering
             {
                 DataItem one = new DataItem();
                 logger.Debug("base--GroupName[{}]ItemId[{}]Value[{}]Timestamp[{}]", o.GroupName, o.ItemId,o.Value,o.Timestamp);
+                logger.Debug("Quality[{}]", o.Quality);
+
                 one.GroupName = o.GroupName;
                 one.TagName = o.ItemId;
                 one.Value = o.Value;
+                one.Quality = o.Quality == "good" ? 192 : 0;
                 one.DataTime = o.Timestamp.ToString();
                 UPTagList.Add(one);
             }

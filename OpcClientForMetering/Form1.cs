@@ -73,6 +73,8 @@ namespace OpcClientForMetering
 
             string[] mmmsf = AllTagList.ToArray();
             string[] bannerzhu = AllBannerTagList.ToArray();
+            OpcSetClientH.OpcClientMainSubscription(mmmsf,"realtime");
+            OpcSetClientH.OpcClientMainSubscription(bannerzhu, "banner");
 
             this.OpcSetClientH.OpcSetTagChanged += new SkKit.kit.TagEventHandler(OpcClientChangeTagNew);
         }
@@ -90,7 +92,7 @@ namespace OpcClientForMetering
                     newtag.OpcTagName = tl.TagName;
                     newtag.Value = tl.Value;
                     newtag.DataTime = tl.DataTime;
-                    newtag.Quality = (ushort)(tl.Quality == (ushort)192?1:2);
+                    newtag.Quality = tl.Quality;
                     OpcSetUpdateTag(newtag);
                     RealList.Add(newtag);
                 }
@@ -100,7 +102,7 @@ namespace OpcClientForMetering
                     newtag.OpcTagName = tl.TagName;
                     newtag.Value = tl.Value;
                     newtag.DataTime = tl.DataTime;
-                    newtag.Quality = (ushort)(tl.Quality == (ushort)192 ? 1 : 2);
+                    newtag.Quality = tl.Quality;
                     BanList.Add(newtag);
                 }
             }

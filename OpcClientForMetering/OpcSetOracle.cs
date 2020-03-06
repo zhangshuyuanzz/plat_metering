@@ -51,11 +51,14 @@ namespace OpcClientForMetering
                 return rows;
             }
         }
+        string OpcOracleString = "insert into {0}" +
+                                            "( TAG_NAME,TAG_DESCRI,TAG_OWNER,TAG_VALUE,TAG_UNIT,TAG_QUALITY,TIME)"+
+                                             " values ('{1}','{2}','{3}',{4},'{5}',{6},'{7}')";
         public int OracleInsertListData(string tblNm, List<NMDev> devList)
         {
             int rows = devList.Count;
             logger.Debug("rows[{}]", rows);
-            string OpcSQLString = "insert into " + tblNm + "(NAME,VALUE,TIME) values ('{0}',{1},'{2}')";
+            string OpcTString;
             try
             {
                 isconned();
@@ -66,9 +69,11 @@ namespace OpcClientForMetering
                 {
                     tagValue = Convert.ToSingle(item.taginfo.Value);// (float)item.taginfo.Value;
                     logger.Debug("TagName[{}]value[{}]DataTime[{}]", item.taginfo.TagName, tagValue, item.taginfo.DataTime);
-                    OpcSQLString = string.Format(OpcSQLString, item.taginfo.TagName, tagValue, item.taginfo.DataTime);
-                    logger.Debug("OpcSQLString[{}]", OpcSQLString);
-                    cmd.CommandText = OpcSQLString;
+                    OpcTString = string.Format(OpcOracleString, tblNm, 
+                                                                item.taginfo.TagName, item.devdescription, item.devfac,
+                                                                tagValue, item.devuint, item.taginfo.Quality, item.taginfo.DataTime);
+                    logger.Debug("OpcSQLString[{}]", OpcTString);
+                    cmd.CommandText = OpcTString;
                     cmd.ExecuteNonQuery();
                 }
             }
