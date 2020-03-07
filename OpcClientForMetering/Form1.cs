@@ -28,23 +28,24 @@ namespace OpcClientForMetering
             this.tagName.Width = this.listView1.Width * 7 / 16-10;
             this.tagValue.Width = this.listView1.Width * 4 / 16-10;
             this.tagTime.Width  = this.listView1.Width * 5 / 16-2;
+
             OpcSetCfg = new OpcSetConfig();
             OpcSetCfg.OpcSetConfigParseXml();
-            OpcSetOracleH = new OpcSetOracle(OpcSetCfg.oracleIp, OpcSetCfg.oracleSerNm, OpcSetCfg.oracleUsr, OpcSetCfg.oraclePw);
             this.trueversion.Text = "V." + Application.ProductVersion;
             logger.Debug("Form1---finish!!");
         }
         private void Form1_Load(object sender, EventArgs e)
         {
             logger.Debug("Form1_Load--OpcSetCfg.OpcIP[{}]", OpcSetCfg.OpcIP);
-            OpcSetClientH = new OpcClientMain(OpcSetCfg.OpcIP, OpcSetCfg.OpcName);
-
             Thread scanThread = new Thread(new ThreadStart(OnlyOnceThread));
             scanThread.IsBackground = true;
             scanThread.Start();
+            logger.Debug("Form1_Load---finish!!");
         }
         void OnlyOnceThread()
         {
+            OpcSetOracleH = new OpcSetOracle(OpcSetCfg.oracleIp, OpcSetCfg.oracleSerNm, OpcSetCfg.oracleUsr, OpcSetCfg.oraclePw);
+            OpcSetClientH = new OpcClientMain(OpcSetCfg.OpcIP, OpcSetCfg.OpcName);
             this.OpcSetClientH.OpcClientMainRead(ref OpcSetCfg.DevListAll);
 
             var result3 = from v in OpcSetCfg.DevListAll orderby v.Key select v;
@@ -58,6 +59,8 @@ namespace OpcClientForMetering
                 AllTagList.Add(d.Value.taginfo.OpcTagName);
                 OpcClientInsetData(d.Value.taginfo);
             }
+            this.listView1.EndUpdate();
+
             List<NMDev>cutimelist =  OpcSetCfg.DevListAll.Values.ToList();
             OpcSetOracleH.OracleInsertListData(OpcSetCfg.cuTmTbl, cutimelist); //实时设备的tag 写到数据库
 
@@ -68,8 +71,6 @@ namespace OpcClientForMetering
             }
             List<NMDev> bantimelist = OpcSetCfg.DevBannerList.Values.ToList();
             OpcSetOracleH.OracleInsertListData(OpcSetCfg.bannerTbl, bantimelist); //班量的tag 写到数据库
-
-            this.listView1.EndUpdate();
 
             string[] mmmsf = AllTagList.ToArray();
             string[] bannerzhu = AllBannerTagList.ToArray();
@@ -106,9 +107,8 @@ namespace OpcClientForMetering
                     BanList.Add(newtag);
                 }
             }
-          //  this.OpcSetSqlite.OpcSetUpdateTag("RealTimeOpc", RealList);
+           // this.OpcSetSqlite.OpcSetUpdateTag("RealTimeOpc", RealList);
            // this.OpcSetSqlite.OpcSetUpdateTag("BannerOpc", BanList);
-
         }
         void OpcSetUpdateTag(DataItem OTag)
         {
@@ -218,6 +218,11 @@ namespace OpcClientForMetering
         }
 
         private void ListView1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ListView1_SelectedIndexChanged_2(object sender, EventArgs e)
         {
 
         }

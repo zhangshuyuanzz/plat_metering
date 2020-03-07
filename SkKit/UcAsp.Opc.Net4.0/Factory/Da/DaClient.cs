@@ -34,7 +34,7 @@ namespace UcAsp.Opc.Da
         private Dictionary<string, OpcDa.ISubscription> dic = new Dictionary<string, OpcDa.ISubscription>();
 
         // default monitor interval in Milliseconds
-        private const int DefaultMonitorInterval = 100;
+        private const int DefaultMonitorInterval = 10000;
         private Server OpcServer;
 
 
@@ -188,8 +188,9 @@ namespace UcAsp.Opc.Da
                 throw new OpcException("Server not connected. Cannot read tag.");
             }
             var result = _server.Read(new[] { item })[0];
+
             CheckResult(result, tag);
-            OpcItemValue casted = new OpcItemValue { ItemId = result.ItemName, Quality = result.Quality.ToString(), Value = result.Value, Timestamp = result.Timestamp };
+            OpcItemValue casted = new OpcItemValue { ItemId = result.ItemName, Quality = result.Quality.GetCode(), Value = result.Value, Timestamp = result.Timestamp };
             return casted;
         }
         public List<OpcItemValue> Read(string[] tag)
@@ -207,7 +208,7 @@ namespace UcAsp.Opc.Da
             List<OpcItemValue> itemvalues = new List<OpcItemValue>();
             for (int i = 0; i < itemresult.Length; i++)
             {
-                itemvalues.Add(new OpcItemValue { ItemId = itemresult[i].ItemName, Quality = itemresult[i].Quality.ToString(), Value = itemresult[i].Value, Timestamp = itemresult[i].Timestamp });
+                itemvalues.Add(new OpcItemValue { ItemId = itemresult[i].ItemName, Quality = itemresult[i].Quality.GetCode(), Value = itemresult[i].Value, Timestamp = itemresult[i].Timestamp });
             }
             return itemvalues;
         }
@@ -304,9 +305,6 @@ namespace UcAsp.Opc.Da
         /// Gets the root node of the server
         /// </summary>
         public DaNode RootNode { get; private set; }
-
-
-
         /// <summary>
         /// Explore a folder on the Opc Server
         /// </summary>
@@ -375,12 +373,10 @@ namespace UcAsp.Opc.Da
             dic.Add(groupName, sub);
             sub.DataChanged += (subscriptionHandle, requestHandle, values) =>
             {
-
-
                 List<OpcItemValue> items = new List<OpcItemValue>();
                 foreach (OpcDa.ItemValueResult value in values)
                 {
-                    OpcItemValue item = new OpcItemValue { GroupName = groupName, Value = value.Value, ItemId = value.ItemName, Quality = value.Quality.ToString(), Timestamp = value.Timestamp };
+                    OpcItemValue item = new OpcItemValue { GroupName = groupName, Value = value.Value, ItemId = value.ItemName, Quality = value.Quality.GetCode(), Timestamp = value.Timestamp };
                     items.Add(item);
 
                 }

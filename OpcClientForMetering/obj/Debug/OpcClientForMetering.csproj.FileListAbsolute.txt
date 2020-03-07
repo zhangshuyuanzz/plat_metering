@@ -100,7 +100,6 @@ C:\Users\Administrator\Desktop\plat_metering\OpcClientForMetering\bin\Debug\NLog
 C:\Users\Administrator\Desktop\plat_metering\OpcClientForMetering\bin\Debug\System.Data.SQLite.xml
 C:\Users\Administrator\Desktop\plat_metering\OpcClientForMetering\bin\Debug\System.Data.SQLite.dll.config
 C:\Users\Administrator\Desktop\plat_metering\OpcClientForMetering\obj\Debug\OpcClientForMetering.csproj.App.config
-C:\Users\Administrator\Desktop\plat_metering\OpcClientForMetering\obj\Debug\OpcClientForMetering.csprojAssemblyReference.cache
 C:\Users\Administrator\Desktop\plat_metering\OpcClientForMetering\obj\Debug\OpcClientForMetering.Form1.resources
 C:\Users\Administrator\Desktop\plat_metering\OpcClientForMetering\obj\Debug\OpcClientForMetering.Properties.Resources.resources
 C:\Users\Administrator\Desktop\plat_metering\OpcClientForMetering\obj\Debug\OpcClientForMetering.csproj.GenerateResource.cache
@@ -108,3 +107,4 @@ C:\Users\Administrator\Desktop\plat_metering\OpcClientForMetering\obj\Debug\OpcC
 C:\Users\Administrator\Desktop\plat_metering\OpcClientForMetering\obj\Debug\OpcClientForMetering.csproj.CopyComplete
 C:\Users\Administrator\Desktop\plat_metering\OpcClientForMetering\obj\Debug\OpcClientForMetering.exe
 C:\Users\Administrator\Desktop\plat_metering\OpcClientForMetering\obj\Debug\OpcClientForMetering.pdb
+C:\Users\Administrator\Desktop\plat_metering\OpcClientForMetering\obj\Debug\OpcClientForMetering.csprojAssemblyReference.cache

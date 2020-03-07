@@ -62,12 +62,12 @@ namespace OpcClientForMetering
             try
             {
                 isconned();
-                float tagValue = 0.0F;
+                object tagValue ;
                 OracleCommand cmd = this.oledbConnection.CreateCommand();
 
                 foreach (NMDev item in devList)
                 {
-                    tagValue = Convert.ToSingle(item.taginfo.Value);// (float)item.taginfo.Value;
+                    tagValue = item.taginfo.Value; //Convert.ToSingle(item.taginfo.Value);// (float)item.taginfo.Value;
                     logger.Debug("TagName[{}]value[{}]DataTime[{}]", item.taginfo.TagName, tagValue, item.taginfo.DataTime);
                     OpcTString = string.Format(OpcOracleString, tblNm, 
                                                                 item.taginfo.TagName, item.devdescription, item.devfac,

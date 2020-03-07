@@ -22,7 +22,7 @@ namespace UcAsp.Opc
         public string GroupName { get; set; }
         public object Value { get; set; }
 
-        public string Quality { get; set; }
+        public object Quality { get; set; }
 
         public DateTime Timestamp { get; set; }
     }

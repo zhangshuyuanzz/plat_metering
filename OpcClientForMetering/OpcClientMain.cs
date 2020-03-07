@@ -77,7 +77,7 @@ namespace OpcClientForMetering
                     one.Value.taginfo.Value = data.Value;
                     one.Value.taginfo.DataTime = data.Timestamp.ToString();
                     one.Value.taginfo.Active = true;
-                    one.Value.taginfo.Quality =data.Quality == "good" ? 192 : 0;
+                    one.Value.taginfo.Quality =data.Quality ;
                 }
             }
             catch (Exception ex)
@@ -116,7 +116,7 @@ namespace OpcClientForMetering
                 one.GroupName = o.GroupName;
                 one.TagName = o.ItemId;
                 one.Value = o.Value;
-                one.Quality = o.Quality == "good" ? 192 : 0;
+                one.Quality = o.Quality;
                 one.DataTime = o.Timestamp.ToString();
                 UPTagList.Add(one);
             }
