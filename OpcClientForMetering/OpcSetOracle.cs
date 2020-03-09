@@ -64,14 +64,14 @@ namespace OpcClientForMetering
                 isconned();
                 object tagValue ;
                 OracleCommand cmd = this.oledbConnection.CreateCommand();
-
                 foreach (NMDev item in devList)
                 {
                     tagValue = item.taginfo.Value; //Convert.ToSingle(item.taginfo.Value);// (float)item.taginfo.Value;
                     logger.Debug("TagName[{}]value[{}]DataTime[{}]", item.taginfo.TagName, tagValue, item.taginfo.DataTime);
                     OpcTString = string.Format(OpcOracleString, tblNm, 
                                                                 item.taginfo.TagName, item.devdescription, item.devfac,
-                                                                tagValue, item.devuint, item.taginfo.Quality, item.taginfo.DataTime);
+                                                                tagValue, item.devuint, item.taginfo.Quality, 
+                                                                item.taginfo.DataTime.ToString("yyyy/MM/dd HH:mm:ss"));
                     logger.Debug("OpcSQLString[{}]", OpcTString);
                     cmd.CommandText = OpcTString;
                     cmd.ExecuteNonQuery();

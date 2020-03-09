@@ -15,7 +15,7 @@ namespace Base.kit
         public int TagId { get; set; }
         public byte DataType { get; set; }
         public object Value { get; set; }
-        public string DataTime { set; get; }
+        public DateTime DataTime { set; get; }
         public object Quality { set; get; }
         public bool Active { set; get; }
         public UInt32 TagHandle { set; get; }
@@ -28,13 +28,13 @@ namespace Base.kit
             this.TagName = "unKown name";
             this.OpcTagName = null;
             this.DataType = 1;
-            this.Quality = 192;
+            this.Quality = 0;
             this.Active = false;
             this.Value = 0;
-            this.DataTime = DateTime.Now.ToString(); 
+            this.DataTime = DateTime.Now;
         }
 
-        public DataItem(string name,int id,byte type,object value,string time,string inip)
+        public DataItem(string name,int id,byte type,object value, DateTime time,string inip)
         {
             this.TagName = name;
             this.TagId = id;
@@ -175,16 +175,15 @@ namespace Base.kit
     public class NMDev 
     {
         public string devdescription;
-
         public DataItem taginfo;
         public bool devprefix;
         public string devuint;
-        public string devfac;
+        public string devfac;   
         public int devtype;
 
         public NMDev()
         {
-
+            taginfo = new DataItem();
         }
         public void setTagLable()
         {

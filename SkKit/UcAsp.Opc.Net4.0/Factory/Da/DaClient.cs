@@ -34,7 +34,7 @@ namespace UcAsp.Opc.Da
         private Dictionary<string, OpcDa.ISubscription> dic = new Dictionary<string, OpcDa.ISubscription>();
 
         // default monitor interval in Milliseconds
-        private const int DefaultMonitorInterval = 10000;
+        private const int DefaultMonitorInterval = 4000;
         private Server OpcServer;
 
 

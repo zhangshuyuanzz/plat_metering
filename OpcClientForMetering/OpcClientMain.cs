@@ -59,7 +59,7 @@ namespace OpcClientForMetering
             OpcItemValue data = this.OClient.ReadOneTag<string>(ReadOTag.TagName);
             logger.Debug("ItemId[{}]Value[{}]Timestamp[{}]", data.ItemId, data.Value, data.Timestamp);
             ReadOTag.Value = data.Value;
-            ReadOTag.DataTime = data.Timestamp.ToString();
+            ReadOTag.DataTime = data.Timestamp;
             ReadOTag.Active = true;
         }
         public void OpcClientMainRead(ref ConcurrentDictionary<string, NMDev> ReadDevList)
@@ -75,7 +75,7 @@ namespace OpcClientForMetering
                     logger.Debug("read opc-- dev name[{}]", one.Key);
                     OpcItemValue data = this.OClient.ReadOneTag<string>(one.Value.taginfo.OpcTagName);
                     one.Value.taginfo.Value = data.Value;
-                    one.Value.taginfo.DataTime = data.Timestamp.ToString();
+                    one.Value.taginfo.DataTime = data.Timestamp;
                     one.Value.taginfo.Active = true;
                     one.Value.taginfo.Quality =data.Quality ;
                 }
@@ -117,7 +117,7 @@ namespace OpcClientForMetering
                 one.TagName = o.ItemId;
                 one.Value = o.Value;
                 one.Quality = o.Quality;
-                one.DataTime = o.Timestamp.ToString();
+                one.DataTime = o.Timestamp;
                 UPTagList.Add(one);
             }
             OpcSetTagChanged?.Invoke(UPTagList);

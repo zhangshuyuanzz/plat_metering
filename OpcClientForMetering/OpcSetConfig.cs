@@ -140,7 +140,7 @@ namespace OpcClientForMetering
                 devfac = XmlKit.GetByXml("tagfac", oNode),
                 devtype = int.Parse(XmlKit.GetByXml("type", oNode, "1")),
                 devprefix = XmlKit.GetByXml("Prefix", oNode) == "yes"?true:false,
-        };
+            };
             OraNewDev.setTagLable();
             logger.Info("-parse-devid[{}]devname[{}]devuint[{}]devdescription[{}]devfac[{}]devtype[{}]devprefix[{}]", 
                 OraNewDev.taginfo.TagId, OraNewDev.taginfo.TagName, OraNewDev.devuint, 

@@ -108,7 +108,7 @@ namespace OpcClientForMetering
                             onetag.Value = s.Value;
                             break;
                         case "time":
-                            onetag.DataTime = Convert.ToString(s.Value);
+                            onetag.DataTime = (DateTime)s.Value;
                             break;
                         case "type":
                             onetag.DataType = Convert.ToByte(s.Value);
