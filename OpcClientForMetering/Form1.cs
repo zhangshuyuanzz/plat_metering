@@ -62,7 +62,7 @@ namespace OpcClientForMetering
             this.listView1.EndUpdate();
 
             List<NMDev>cutimelist =  OpcSetCfg.DevListAll.Values.ToList();
-            OpcSetOracleH.OracleInsertListData(OpcSetCfg.cuTmTbl, cutimelist); //实时设备的tag 写到数据库
+         //   OpcSetOracleH.OracleInsertListData(OpcSetCfg.cuTmTbl, cutimelist); //实时设备的tag 写到数据库
 
               this.OpcSetClientH.OpcClientMainRead(ref OpcSetCfg.DevBannerList);
             foreach (KeyValuePair<string, NMDev> h in OpcSetCfg.DevBannerList)
@@ -70,7 +70,7 @@ namespace OpcClientForMetering
                 AllBannerTagList.Add(h.Value.taginfo.OpcTagName);
             }
             List<NMDev> bantimelist = OpcSetCfg.DevBannerList.Values.ToList();
-            OpcSetOracleH.OracleInsertListData(OpcSetCfg.bannerTbl, bantimelist); //班量的tag 写到数据库
+          //  OpcSetOracleH.OracleInsertListData(OpcSetCfg.bannerTbl, bantimelist); //班量的tag 写到数据库
 
             string[] mmmsf = AllTagList.ToArray();
             string[] bannerzhu = AllBannerTagList.ToArray();
@@ -91,6 +91,7 @@ namespace OpcClientForMetering
                 if (tl.GroupName == "realtime") {
                     tl.OpcTagName = tl.TagName;
                     NMDev newtag = new NMDev();
+                    newtag.taginfo.TagName = tl.TagName;
                     newtag.taginfo.Value = tl.Value;
                     newtag.taginfo.DataTime = tl.DataTime;
                     newtag.taginfo.Quality = tl.Quality;
@@ -106,6 +107,7 @@ namespace OpcClientForMetering
                 {
                     NMDev newtag = new NMDev();
                     newtag.taginfo.OpcTagName = tl.TagName;
+                    newtag.taginfo.TagName = tl.TagName;
                     newtag.taginfo.Value = tl.Value;
                     newtag.taginfo.DataTime = tl.DataTime;
                     newtag.taginfo.Quality = tl.Quality;
